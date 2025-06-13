@@ -1,0 +1,183 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Admission Form</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', sans-serif;
+    }
+    body {
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(135deg, #1cbde1, #c67eea, #dd5f67);
+      animation: fadeIn 1s ease-in;
+      padding: 20px;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.95); }
+      to { opacity: 1; transform: scale(1); }
+    }
+    .form-container {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(12px);
+      padding: 30px 40px;
+      border-radius: 15px;
+      box-shadow: 0 0 25px rgba(0, 0, 0, 0.2);
+      color: white;
+      width: 100%;
+      max-width: 600px;
+      animation: slideUp 0.8s ease-in-out;
+    }
+    @keyframes slideUp {
+      from { transform: translateY(30px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+    h2 {
+      text-align: center;
+      margin-bottom: 25px;
+      color: #fff;
+    }
+    .form-group {
+      margin-bottom: 20px;
+    }
+    .form-group label {
+      display: block;
+      margin-bottom: 6px;
+      font-weight: 500;
+    }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 12px;
+      border: none;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.2);
+      color: white;
+      font-size: 15px;
+    }
+    .form-group input::placeholder,
+    .form-group textarea::placeholder {
+      color: #eee;
+    }
+    .form-group input:focus,
+    .form-group textarea:focus {
+      outline: none;
+      background: rgba(255, 255, 255, 0.3);
+    }
+    button {
+      width: 100%;
+      padding: 12px;
+      background-color: #00cec9;
+      border: none;
+      border-radius: 8px;
+      color: white;
+      font-size: 18px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    button:hover {
+      background-color: #00b1a3;
+    }
+    @media (max-width: 500px) {
+      .form-container {
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="form-container">
+    <h2>Admission Form</h2>
+    <form id="admissionForm">
+      <div class="form-group">
+        <label>Student Name</label>
+        <input type="text" name="studentName" placeholder="Enter full name" required>
+      </div>
+
+      <div class="form-group">
+        <label>Father's Name</label>
+        <input type="text" name="fatherName" placeholder="Enter father's name" required>
+      </div>
+
+      <div class="form-group">
+        <label>Class</label>
+        <select required name="className">
+          <option value="" style="color: black;">-- Select Class --</option>
+          <option style="color: black;">Class 6</option>
+          <option style="color: black;">Class 7</option>
+          <option style="color: black;">Class 8</option>
+          <option style="color: black;">Class 9</option>
+          <option style="color: black;">Class 10</option>
+          <option style="color: black;">Class 11</option>
+          <option style="color: black;">Class 12</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>Subject</label>
+        <input type="text" name="subject" placeholder="Enter subject" required>
+      </div>
+
+      <div class="form-group">
+        <label>School Name</label>
+        <input type="text" name="schoolName" placeholder="Enter school name" required>
+      </div>
+
+      <div class="form-group">
+        <label>Mobile Number</label>
+        <input type="tel" placeholder="Enter mobile number" required name="mobile"
+       pattern="[0-9]{10}" maxlength="10" inputmode="numeric" title="Enter 10 digit mobile number">
+
+      </div>
+
+      <div class="form-group">
+        <label>Address</label>
+        <textarea placeholder="Enter full address" rows="3" required name="address"></textarea>
+      </div>
+
+      <button type="submit">Submit Admission form</button>
+    </form>
+  </div>
+
+  <script>
+   document.querySelector('button').addEventListener('click', function (e) {
+  e.preventDefault();
+
+  const studentName = document.querySelector('input[name="studentName"]').value.trim();
+  const fatherName = document.querySelector('input[name="fatherName"]').value.trim();
+  const className = document.querySelector('select[name="className"]').value.trim();
+  const subject = document.querySelector('input[name="subject"]').value.trim();
+  const schoolName = document.querySelector('input[name="schoolName"]').value.trim();
+  const mobile = document.querySelector('input[name="mobile"]').value.trim();
+  const address = document.querySelector('textarea[name="address"]').value.trim();
+
+  // Mobile number validation
+  if (!/^\d{10}$/.test(mobile)) {
+    alert("Please enter a valid 10-digit mobile number.");
+    return;
+  }
+
+  // Message formatting using `\n` and encoding properly
+  const message = `Admission Form Details:\nStudent Name: ${studentName}\nFather's Name: ${fatherName}\nClass: ${className}\nSubject: ${subject}\nSchool: ${schoolName}\nMobile: ${mobile}\nAddress: ${address}`;
+
+  const whatsappNumber = '917302913211'; // Add country code
+  const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+
+  window.open(whatsappURL, '_blank');
+});
+
+  </script>
+
+</body>
+</html>
