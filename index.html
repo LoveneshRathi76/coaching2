@@ -608,7 +608,53 @@
                                                 display: inline-block
                                             }
                                         </style>
-                                        <img fetchpriority="high" decoding="async" width="850" height="750"  src="./logo/Dream High Coaching Center logo.png" style="border-radius: 250px;" >
+                                       <style>
+                                          .fade-img {
+                                                transition: opacity 1s ease-in-out;
+                                                opacity: 1;
+                                                  }
+
+                                                 .fade-out {
+                                                opacity: 0;
+                                                     }
+                                                </style>
+
+                                                      <img class="fade-img" fetchpriority="high" decoding="async" width="750" height="650" 
+                                                      src="./logo/Dream High Coaching Center logo.png" style="border-radius: 20px;">
+
+                                                <script>
+                                                 const images = [
+                                                   "./logo/Dream High Coaching Center logo.png",
+                                                   "./toper/toper.JPG",
+                                                   "./toper/toper2.JPG",
+                                                  "./slide/1.png",   //1
+                                                    "./slide/2.PNG",   //2
+                                                    "./slide/3.JPG",   //3
+                                                    "./slide/4.JPG",   //4
+                                                    "./slide/5.JPG",   //5
+                                                    "./slide/6.JPG",   //6
+                                                    "./slide/7.JPG",   //7
+                                                    "./slide/8.JPG",   //8
+                                                    "./slide/9.JPG",   //9
+                                                    "./slide/10.JPG",  //10
+                                                    "./slide/11.jpg"   //11
+                                                ];
+
+                                                let index = 0;
+                                                const img = document.querySelector('img[fetchpriority="high"]');
+
+                                                setInterval(() => {
+                                                    img.classList.add("fade-out"); // Start fade out
+
+                                                    setTimeout(() => {
+                                                    index = (index + 1) % images.length;
+                                                    img.src = images[index];
+                                                    img.classList.remove("fade-out"); // Fade in
+                                                    }, 1000); // Wait 1s before changing image
+                                                }, 5000);
+                                                </script>
+
+
                                     </div>
                                 </div>
 
